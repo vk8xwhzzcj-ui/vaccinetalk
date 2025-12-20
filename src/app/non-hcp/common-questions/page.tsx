@@ -1,6 +1,50 @@
+'use client';
+
 import Header from '@/components/Header';
+import { useState } from 'react';
 
 export default function CommonQuestions() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const questions = [
+    {
+      question: "إيه هي التطعيمات الأساسية للأطفال في مصر؟",
+      answer: "التطعيمات الأساسية للأطفال في مصر بتشمل: لقاح التهاب الكبد الوبائي ب، لقاح شلل الأطفال، لقاح الثلاثي البكتيري (الدفتيريا، السعال الديكي، التيتانوس)، لقاح الحصبة والنكاف والحصبة الألمانية، لقاح الإنفلونزا البكتيرية، ولقاح الدرن."
+    },
+    {
+      question: "ممكن أطعّم طفلي لو كان مريض؟",
+      answer: "في معظم الحالات، ممكن تطعّم طفلك حتى لو كان عنده نزلة برد خفيفة أو حمى منخفضة. لكن لازم تستشير الطبيب لو الطفل عنده مرض شديد أو حمى عالية. الطبيب هيفحص الحالة ويقرر لو آمن نكمل التطعيم ولا لأ."
+    },
+    {
+      question: "إيه هي الآثار الجانبية الشائعة للتطعيمات؟",
+      answer: "الآثار الجانبية الشائعة للتطعيمات عادة بتكون خفيفة وبتشمل: احمرار أو تورم في مكان الحقن، حمى خفيفة، أو تهيج. الأعراض دي عادة بتروح في خلال يوم أو يومين. الآثار الجانبية الخطيرة نادرة جداً."
+    },
+    {
+      question: "التطعيمات آمنة؟",
+      answer: "آه، التطعيمات آمنة جداً وبتتختبر بدقة قبل ما تتنزل. الفوايد الصحية للتطعيمات أكتر بكتير من المخاطر المحتملة. التطعيمات بتحمي من أمراض خطيرة ممكن تسبب مضاعفات شديدة أو حتى الوفاة."
+    },
+    {
+      question: "أعمل إيه لو فات موعد تطعيم طفلي؟",
+      answer: "لو فات موعد تطعيم طفلك، لازم تتصل بالطبيب في أقرب وقت ممكن. مش هنبدأ الجدول من جديد لكن هنكمل. المهم إنك تكمل جدول التطعيمات بأسرع ما يمكن."
+    },
+    {
+      question: "ممكن أعطي أكتر من تطعيم في نفس الوقت؟",
+      answer: "آه، ممكن تعطي أكتر من تطعيم في نفس الوقت بأمان. ده مش هيأثر على فعالية التطعيمات ومش هيزيد الآثار الجانبية. في الواقع، إنك تعطي أكتر من تطعيم مع بعض بيوفر الوقت ويضمن حماية الطفل في أقرب وقت ممكن."
+    },
+    {
+      question: "إيه هي التطعيمات الموصى بيها للكبار؟",
+      answer: "التطعيمات الموصى بيها للكبار بتشمل: لقاح الإنفلونزا السنوي، لقاح التيتانوس والدفتيريا كل 10 سنين، لقاح التهاب الكبد الوبائي ب، ولقاح المكورات الرئوية للفئات المعرضة للخطر. ممكن يكون فيه تطعيمات إضافية حسب الحالة الصحية والعمر."
+    },
+    {
+      question: "ينفع الحوامل تتطعّم؟",
+      answer: "آه، بعض التطعيمات آمنة ومهمة للحوامل. لقاح الإنفلونزا واللقاح الثلاثي (Tdap) ولقاح RSV آمنين ومهمين أثناء الحمل. لكن لازم تتجنب التطعيمات الحية زي MMR أثناء الحمل. لازم تستشير الطبيب قبل أي تطعيم أثناء الحمل."
+    }
+  ];
+
+  const toggleQuestion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -23,25 +67,88 @@ export default function CommonQuestions() {
         </div>
       </main>
 
-      {/* Main Content Section */}
+      {/* Title Section */}
+      <section style={{padding:'0.5rem 1rem 0'}}>
+        <h2 className="about-lang-title" style={{textAlign:'center', fontSize:'2rem', margin:'0', direction: 'rtl', fontFamily: "'Cairo', 'Noto Sans Arabic', sans-serif"}}>
+          الأسئلة الشائعة
+        </h2>
+      </section>
+
+      {/* Q&A Section */}
       <section className="about-section">
         <div className="about-elegant-card">
-          {/* Decorative Corner Elements */}
           <div className="card-corner card-corner-tl"></div>
           <div className="card-corner card-corner-tr"></div>
           <div className="card-corner card-corner-bl"></div>
           <div className="card-corner card-corner-br"></div>
 
-          {/* Content */}
-          <div className="coming-soon-container">
-            <div className="coming-soon-content">
-              <div className="coming-soon-icon">🚧</div>
-              <h2 className="coming-soon-title">قريباً</h2>
-              <h2 className="coming-soon-title english">Coming Soon</h2>
-              <p className="coming-soon-message">
-                <span className="coming-soon-text arabic">نعمل على إعداد قسم الأسئلة الشائعة</span>
-                <span className="coming-soon-text">We're working on preparing the Common Questions section</span>
-              </p>
+          <div className="about-bilingual">
+            <div className="about-lang arabic" style={{alignItems: 'flex-start', direction: 'rtl', textAlign: 'right', width: '100%'}}>
+              <div style={{width: '100%'}}>
+                {questions.map((item, index) => (
+                  <div 
+                    key={index} 
+                    style={{
+                      marginBottom: '1.5rem',
+                      borderBottom: index < questions.length - 1 ? '1px solid rgba(139, 115, 85, 0.2)' : 'none',
+                      paddingBottom: index < questions.length - 1 ? '1.5rem' : '0'
+                    }}
+                  >
+                    <button
+                      onClick={() => toggleQuestion(index)}
+                      style={{
+                        width: '100%',
+                        textAlign: 'right',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: '1rem 0',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        gap: '1rem'
+                      }}
+                    >
+                      <h3 style={{
+                        textAlign: 'right',
+                        fontSize: '1.15rem',
+                        fontWeight: 700,
+                        color: '#40606D',
+                        margin: 0,
+                        flex: 1,
+                        fontFamily: "'Cairo', 'Noto Sans Arabic', sans-serif"
+                      }}>
+                        {item.question}
+                      </h3>
+                      <span style={{
+                        fontSize: '1.5rem',
+                        color: '#8b7355',
+                        transition: 'transform 0.3s ease',
+                        transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                        flexShrink: 0
+                      }}>
+                        ▼
+                      </span>
+                    </button>
+                    {openIndex === index && (
+                      <div style={{
+                        padding: '0 0 1rem 0',
+                        animation: 'fadeIn 0.3s ease'
+                      }}>
+                        <p className="about-lang-intro" style={{
+                          direction: 'rtl',
+                          textAlign: 'right',
+                          marginTop: '0.5rem',
+                          fontFamily: "'Cairo', 'Noto Sans Arabic', sans-serif",
+                          lineHeight: '1.8'
+                        }}>
+                          {item.answer}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
